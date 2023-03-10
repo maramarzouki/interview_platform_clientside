@@ -1,0 +1,163 @@
+.loginform{
+    width: 100%;
+    display: flex;
+    font-family: 'Poppins', sans-serif;
+}
+
+.login-form-container{
+    height: 100vh;
+    width: 50%;
+    background-color: white;
+
+}
+
+.login-pic-container{
+    height: 100vh;
+    width: 50%;
+    background-color:white
+
+}
+
+.pic-container{
+    position: relative;
+    margin: 20px;
+    margin-left: 50px;
+    width: 90%;
+    height: 610px;
+    background: #FFE6E6;
+    border-radius: 15px;
+}
+
+.form-logo h3{
+    margin-top: -3px;
+    margin-left: 350px;
+    font-family:Arial, Helvetica, sans-serif;
+
+}
+
+.form-logo i{
+    margin-left: 4px;
+    color: #C10000;
+    animation: shake 1.5s infinite;
+
+}
+
+@keyframes shake{
+    10% {transform: scale(1.05) rotate(5deg);}
+    20% {transform: scale(1.05) rotate(-5deg);}
+    30% {transform: scale(1.05) rotate(5deg);}
+    40% {transform: none;}
+
+}
+
+.signin-form{
+    /* background-color: antiquewhite;  */
+    position: relative;
+    margin: 60px 0 50px;
+    margin-left: 145px;
+    width: 430px;
+   
+    height: 400px;
+}
+
+.signin-form form{
+    align-items: center;
+    justify-content: center;
+    margin-left: 10%;
+}
+
+.signin-form h2{
+    font-size: 1.5rem;
+    color: #3A3737 ;
+    margin-bottom: 15%;
+    text-align: center;
+     margin-top: 5%; 
+}
+
+
+.signin-form input{
+    background-color: transparent;
+    color: black;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px #000000 solid;
+    font-size: 18px;
+    width: 80%;
+    height: 40px;
+    padding: 0 0 0 40px;
+
+}
+
+
+.signin-field{
+    display: flex;
+    flex-direction: column;
+    
+    margin-bottom: 40px;
+}
+
+.signin-error-message{
+    text-align:center;
+     position: absolute;
+    font-size:13px;
+     color:red;
+     margin-top:10%; 
+    margin-left:2%;
+}
+.signin-input{
+    width: 100%;
+    height: fit-content;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+}
+
+
+
+
+.signin-input .icons{
+    width: 20px;
+    position: absolute;
+    z-index: 99;
+    left: 12px;
+    bottom: 9px
+}
+
+.signin-form input:focus{
+  outline: 0;
+  text-decoration: none;
+  
+  background-color: transparent;
+  border-bottom-color: rgb(72, 75, 75);
+}
+
+.signin-form input:active{
+  outline: 0;
+background-color: transparent;
+}
+
+
+
+
+
+.button-login{
+    width: 355px;
+    height: 53px;
+    background: #C10000;
+    border: none;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    color: white;
+    font-weight: 550;
+    letter-spacing: 1px;
+    transition: .5s;
+    margin-top: 10px;
+
+
+
+}
+
