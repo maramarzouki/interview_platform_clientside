@@ -1,0 +1,260 @@
+
+ /**********************************************************************/
+/*!   edit account          */
+
+
+.button2{
+    width: 145px;
+    height: 35px;
+    font-size: 15px;
+    font-weight: 500;
+    /* margin-top: 60px; */
+    border: none;
+    padding: 5px;
+    background: #C10000;
+    border-radius: 5px;  
+    cursor: pointer;
+    color: white;
+}
+
+.edit-button{
+    display: flex;
+    flex-direction: row;
+    margin-top: 40px;
+    gap: 55px;
+}
+
+.button3{
+    width: 145px;
+    height: 35px;
+    font-size: 15px;
+    font-weight: 500;
+    /* margin-top: 60px; */
+    border: none;
+    padding: 5px;
+    background: #C10000;
+    border-radius: 5px;  
+    cursor: pointer;
+    color: white;
+
+}
+
+/* ************************************************** */
+.box-edit-user{
+    margin-right: auto;
+    margin-top: 3%;
+    width: 950px;
+    height: 350px;
+    display: flex;
+    flex-direction: row;
+    gap: 3%;
+   
+
+    background: #FEFEFE;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+}
+
+.box-edit-user .side-box{
+    background-color: transparent;
+    width:150px;
+    padding-left: 45px;
+    /* padding-right: 10px; */
+    padding-top: 20px;
+    border-right: 1px solid rgba(144, 144, 144, 0.25);
+}
+
+
+.side-box button{
+    margin-top: 20px;
+    /* margin-bottom: 20px; */
+    width:130px;
+    border: none;
+    text-align: left;
+    padding-left: 10.5px;
+    font-size: 12.5px;
+    cursor: pointer;
+    color: #000000;
+
+
+    background-color: transparent;
+    font-family: 'Poppins', sans-serif;
+    height: 44px;
+
+    border-radius: 8px;
+}
+
+.side-box button.selected-button{
+    /* background-color: bisque ; */
+    background: rgba(211, 20, 26, 0.1);
+
+}
+
+
+
+
+.box-edit-user .container-edit-user{
+    background-color: transparent;
+    width: 725px;
+} 
+
+
+/* *************************************************************************** */
+/* ! inputs  */
+.edit-user-field{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+
+}
+
+.align-edit-form{
+    display: flex;
+    flex-direction: row;
+    gap: 10%;
+    
+}
+
+.edit-user-input{
+    width: 100%;
+    height: fit-content;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+ .form-edit-user input{
+    font-family: 'Poppins', sans-serif;
+    background-color: transparent;
+    color: black;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px #999999 solid;
+    font-size: 13px;
+    width: auto;
+    height: 40px;
+    padding: 0 0 0 40px;
+}
+.edit-user-input .icons{
+    width: 20px;
+    position: absolute;
+    z-index: 99;
+    left: 12px;
+    color: #999999;
+    bottom: 10px
+} 
+
+.edit-user-input label{
+    font-size: 12px;
+}
+
+.form-edit-user input:focus{
+    outline: 0;
+    text-decoration: none;
+    
+    background-color: transparent;
+    border-bottom-color: rgb(72, 75, 75);
+  }
+
+  /* **************************************** */
+  /* ! edit email field */
+  .edit-email-field{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+
+  .edit-email-input{
+    width: 65%;
+    height: fit-content;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .edit-email-input .icons{
+    width: 20px;
+    position: absolute;
+    z-index: 99;
+    left: 12px;
+    color: #999999;
+    bottom: 10px
+} 
+
+.edit-email-input label{
+    font-size: 12px;
+}
+
+
+.edit-user-button{
+    background: #C10000;
+    border-radius: 8px;
+    color: white;
+    width: 190px;
+    height: 42px;
+    font-size: 14px;
+    line-height: 20px;  
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    margin-top: 15px ;
+}
+
+
+
+/* ********************************************************************* */
+/*  ! Change pwd */
+.change-pwd{
+    display: flex;
+    flex-direction: row;
+    gap: 75px;
+    margin-top: -3%;
+}
+.change-button{
+    height: 40px;
+    font-size: 14px;
+    text-align: center;
+    color: #FFFFFF;
+    background-color: #C10000;
+    transition: 0.3s ease all;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    border-radius: 8PX;
+    width: 150px;
+    margin-top: 8px;
+
+    
+
+}
+
+.delete-acc{
+    display: flex;
+    flex-direction: row;
+    gap: 167px;
+    margin-top: -3%;
+}
+
+.delete-acc-button{
+    height: 40px;
+    font-size: 14px;
+    text-align: center;
+    color: #C10000;
+    background-color: #FFFFFF;
+    transition: 0.3s ease all;
+    font-weight: 500;
+    border: 1px solid #C10000;
+    cursor: pointer;
+    border-radius: 8PX;
+    width: 150px;
+    margin-top: 8px;
+
+}
+
+
+
+
+
+

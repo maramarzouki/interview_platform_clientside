@@ -1,0 +1,32 @@
+/**********************************************************/
+        /* ! here the container and main should be in all pages */
+
+        /* ? container is the whole page */
+
+   
+        .container{
+            position: fixed;
+            width: 100%;
+            background-color: transparent;
+        
+        }
+        
+            /* ?  main is section besides the side Bar */
+        
+        .main{
+
+            font-family: 'Poppins', sans-serif;
+            position: absolute;
+            width:calc(100% - 280px);
+            left: 290px;
+             background-color: transparent;
+            /* overflow: scroll;  */
+            
+            height: 100vh;
+            /* min-height: 100vh; */
+            /* background: transparent; */
+            /* transition: 0.5s; */
+            /* align-items: center;
+            justify-content: center; */
+            border-radius: 20px 0px 0px 20px;
+        }

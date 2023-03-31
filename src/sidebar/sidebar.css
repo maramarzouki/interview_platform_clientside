@@ -1,0 +1,92 @@
+.sidebar-menu{
+    position: fixed;
+    width: 250px;
+    height: 100%;
+    background-color: #F5F5F5;
+    border-left: 10px solid   #F5F5F5;
+    transition: 0.5s;
+    overflow: hidden;
+    /* border-radius: 0 10px 0px 0px; */
+    box-shadow:  5px 15px 6px #e3e3e3,
+             -5px -5px 6px #f4f4f4;
+}
+
+.sidebar-menu .side-logo{
+    position: relative;
+    margin-top: 15% ;
+    margin-left: 20%;
+   
+}
+
+.sidebar-menu .side-logo h3{
+    margin-left: 22%;
+    font-family: 'Poppins', sans-serif;
+    margin-top: 2%;
+}
+
+.sidebar-menu ul{
+    position: absolute;
+    top: 21%; /* move the all ul to the top or down */
+    left: -5%;
+    width: 100%;
+}
+
+.sidebar-menu ul li {
+    position: relative;
+    width: 100%;
+    list-style: none;
+    /* border-bottom-left-radius: 30px;
+    border-top-left-radius: 30px; */
+    transition: all 300ms ease;
+
+}
+
+.sidebar-menu ul li:hover{
+    margin-left: 0.5rem;
+}
+
+
+.sidebar-menu ul li a{
+    position: relative;
+    display: block;
+    width: 100%;
+    display: flex;
+    text-decoration: none;
+    color: #2f2e2e;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15.1px;
+
+    
+    }
+
+    .sidebar-menu ul li a i{
+        position: relative;
+        display: block;
+        min-width: 60px;
+        height: 60px;
+        line-height: 60px;
+        text-align: center;
+        font-size: 1.3rem;
+        
+        }
+
+        .sidebar-menu ul li a span{
+            position: relative;
+            display: block;
+            padding: 0 5px;
+            height: 60px;
+            line-height: 60px;
+            text-align: start;
+            white-space: nowrap;
+        
+        }
+
+
+        /* selected item  */
+
+        .selected  span, .selected i{
+            color: #C10000;
+        }
+
+
+

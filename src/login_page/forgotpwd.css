@@ -1,0 +1,93 @@
+.container-fg-pwd{
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f1f1f1;
+
+}
+
+.form-fg{
+    max-width: 430px;
+    width: 100%;
+    border-radius: 6px;
+    background-color: #ffffff;
+    padding: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+
+}
+
+.fg-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.fg-title{
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.fg-instruction{
+    text-align: center;
+    font-size: 13px;
+    margin-top: -1%;
+}
+
+.fg-content form{
+    margin-top: 30px;
+}
+
+.fg-input{
+    height: 45px;
+    width: 100%;
+    margin-bottom: 35px;
+}
+
+.fg-input input{
+    height: 100%;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: 5px;
+    padding-left: 5px;
+    border: 1px solid #cbcbcb;
+
+}
+.fg-input input:focus{
+    outline: none;
+    border-bottom-width: 2px ;
+}
+.fg-button button{
+    height: 45px;
+    width: 102%;
+    border-radius: 5px;
+    background-color: #C10000;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 500;
+    color: white;
+    box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.25);
+    
+
+}
+
+.fg-button button:hover{
+    background-color: #d90f0f;
+
+}
+
+.error-message-fg{
+    text-align:center;
+     position: absolute;
+    font-size:10.5px;
+    margin-left: 5px;
+     color:red;
+      margin-top:0.25%;
+
+}

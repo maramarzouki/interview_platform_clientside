@@ -1,0 +1,12 @@
+.test-icon{
+    color: #c10000;
+    cursor: pointer;
+}
+
+.test-icon::before{
+    content: '';
+    left: 50%;
+    top: 50%;
+    border-radius: 50%;
+    background-color: black;
+}
