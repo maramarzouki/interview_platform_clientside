@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Fresca&family=Outfit:wght@100;200;300;400;500;600&family=Poppins:wght@200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+.calendar-page{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+   
+}
+
+.calendar{
+    width: 640px;
+    height: 80%;
+    
+}
+:root {
+    --fc-button-text-color: #000000;
+    --fc-button-bg-color: #F4F4F5;
+    --fc-button-border-color: #F4F4F5;
+    --fc-button-hover-bg-color: #F4F4F5;
+    --fc-button-hover-border-color: none;
+    --fc-button-active-bg-color: #c10000;
+    --fc-button-active-border-color: #c10000;
+    --fc-event-bg-color: #3788d8;
+    --fc-event-border-color: #3788d8;
+    --fc-event-text-color: #fff;
+    --fc-event-selected-overlay-color: rgba(0, 0, 0, 0.25);
+  
+    --fc-more-link-bg-color: #d0d0d0;
+    --fc-more-link-text-color: inherit;
+  
+    --fc-event-resizer-thickness: 8px;
+    --fc-event-resizer-dot-total-width: 8px;
+    --fc-event-resizer-dot-border-width: 1px;
+  
+    --fc-non-business-color: rgba(215, 215, 215, 0.3);
+    --fc-bg-event-color: rgb(143, 223, 130);
+    --fc-bg-event-opacity: 0.3;
+    --fc-highlight-color: rgba(188, 232, 241, 0.3);
+    --fc-today-bg-color: rgba(255, 220, 40, 0.15);
+    --fc-now-indicator-color: red;
+}
+
+
+.fc-direction-ltr .fc-button-group>.fc-button:first-child {
+    border-bottom-right-radius: 0;
+    color: white;
+    border-top-right-radius: 0;
+}
+
+.fc .fc-toolbar-title {
+    font-size: 1.2em;
+    margin: 0;
+}
+.fc .fc-button {
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 0.25em;
+    display: inline-block;
+    font-size: 0.9em;
+    font-weight: 400;
+    line-height: 1.5;
+    padding: 0.4em 0.65em;
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    vertical-align: middle;
+}
+
+.day-details{
+    width: 315px;
+    height: 551px;
+    background-color: #FEFEFE;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
+    margin-top: -10px;
+}
+
+.day-details p{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    margin-left: 9px;
+    margin-top: 17px;
+}
+.day-details .instruction{
+    font-weight: 400;
+    font-size: 14px;    
+    color: #475569;
+}

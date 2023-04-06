@@ -42,13 +42,14 @@ function Sidebar() {
                 <Link to={'/userdash'}><i class="fas fa-house-user"></i><span>Dashboard</span></Link>
             </li>
             <li>
-                <Link><i class="fas fa-calendar"></i><span>Calendar</span></Link>
+                <Link to={'/calendar'}><i class="fas fa-calendar"></i><span>Calendar</span></Link>
+            </li>
+          
+            <li>
+                 <Link to={'/interviews'}><i class="fas fa-video"></i><span>Interviews</span></Link>
             </li>
             <li>
                 <Link to={'/tests'}><i class="fas fa-folder"></i><span>Tests</span></Link>
-            </li>
-            <li>
-                 <Link to={'interviews'}><i class="fas fa-video"></i><span>Interviews</span></Link>
             </li>
             <li>
                  <Link to={'/account'}><i class="fas fa-user"></i><span>Account</span></Link>

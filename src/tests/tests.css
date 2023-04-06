@@ -1,5 +1,5 @@
 .test-icon{
-    color: #c10000;
+    color: #ffffff;
     cursor: pointer;
 }
 
@@ -9,4 +9,56 @@
     top: 50%;
     border-radius: 50%;
     background-color: black;
+}
+
+.chevron-right{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #c10000;
+    border: 1px solid #c10000;
+    
+}
+
+/* **************************************************** */
+
+.dialog-question-title{
+    background-color: #F5F5F5;
+    font-weight: 500;
+    font-size: 22px;
+}
+
+.question{
+    font-weight: 350;
+    font-size: 15px;
+    color: black;
+}
+
+.question-example p{
+    font-weight: 350;
+    font-size: 15px;
+    color: black;
+    margin-top: -10px;
+
+}
+
+.question-desc p{
+    font-weight: 350;
+    font-size: 15px;
+    color: black;
+    margin-top: -10px;
+}
+
+.question-constraints p{
+    font-weight: 350;
+    font-size: 15px;
+    color: black;
+    margin-top: -10px;
+}
+
+.question-input p{
+    font-weight: 350;
+    font-size: 15px;
+    color: black;
+    margin-top: -10px;
 }

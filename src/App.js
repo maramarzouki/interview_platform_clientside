@@ -14,6 +14,8 @@ import EditCompany from './user/account/EditCompany';
 import EditPwd from './user/account/EditPwd';
 import Tests from './tests/Tests';
 import TestDetail from './tests/TestDetail';
+import Calendar from './calendar/Calendar';
+import Interviews from './interviews/Interviews';
 
 function App() {
   return (
@@ -36,6 +38,10 @@ function App() {
 
        <Route path="/tests" element={ <Tests/> } />
        <Route path="/testdetail" element={ <TestDetail/> } />
+
+       <Route path="/calendar" element={ <Calendar/> } />
+       <Route path="/interviews" element={ <Interviews/> } />
+
 
 
        {/* <Route path='/resetpassword' element={<NewPassword/>} />  */}

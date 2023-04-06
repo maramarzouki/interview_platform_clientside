@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import LogoutIcon from '@mui/icons-material/Logout';
 import {  Modal } from 'antd';
 
-function SidebarTests() {
+function SidebarInterview() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const showModal = () => {
       setIsModalOpen(true);
@@ -44,12 +44,12 @@ function SidebarTests() {
             <li>
                 <Link to={'/calendar'}><i class="fas fa-calendar"></i><span>Calendar</span></Link>
             </li>
-            
-            <li>
+           
+            <li className="selected">
                  <Link to={'/interviews'}><i class="fas fa-video"></i><span>Interviews</span></Link>
             </li>
             <li>
-                <Link to={'/tests'} className="selected"><i class="fas fa-folder"></i><span>Tests</span></Link>
+                <Link to={'/tests'}><i class="fas fa-folder"></i><span>Tests</span></Link>
             </li>
             <li >
                  <Link to={'/account'}><i class="fas fa-user"></i><span>Account</span></Link>
@@ -63,4 +63,4 @@ function SidebarTests() {
   )
 }
 
-export default SidebarTests
+export default SidebarInterview

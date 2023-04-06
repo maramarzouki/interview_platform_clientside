@@ -70,7 +70,7 @@ function Tests() {
                             <StyledTableCell align="center">Years of experience</StyledTableCell>
                             <StyledTableCell align="center">Number of questions</StyledTableCell>
                             <StyledTableCell align="center">Duration</StyledTableCell>
-                            <StyledTableCell align="center">Action</StyledTableCell>
+                            <StyledTableCell align="left">Action</StyledTableCell>
                         </TableRow>
                         </TableHead>
                         <TableBody>
@@ -82,7 +82,11 @@ function Tests() {
                             <StyledTableCell align="center">0-2 years</StyledTableCell>
                             <StyledTableCell align="center">5</StyledTableCell>
                             <StyledTableCell align="center">90 mins</StyledTableCell>
-                            <StyledTableCell align="center"> <Link to={'/testdetail'}><ChevronRightIcon className='test-icon'/></Link> </StyledTableCell>
+                            <StyledTableCell align="left"> 
+                                <div className="chevron-right">
+                                  <Link to={'/testdetail'}><ChevronRightIcon className='test-icon'/></Link>
+                                </div>
+                             </StyledTableCell>
 
                             </StyledTableRow>
                             <StyledTableRow >
@@ -92,7 +96,11 @@ function Tests() {
                             <StyledTableCell align="center">0-2 years</StyledTableCell>
                             <StyledTableCell align="center">5</StyledTableCell>
                             <StyledTableCell align="center">90 mins</StyledTableCell>
-                            <StyledTableCell align="center"> <ChevronRightIcon className='test-icon'/></StyledTableCell>
+                            <StyledTableCell align="left">
+                                <div className="chevron-right">
+                                  <Link to={'/testdetail'}><ChevronRightIcon className='test-icon'/></Link>
+                                </div>
+                            </StyledTableCell>
 
                             </StyledTableRow>
                         </TableBody>

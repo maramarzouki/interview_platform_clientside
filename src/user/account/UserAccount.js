@@ -96,24 +96,6 @@ function UserAccount() {
             </div>
               
 
-              {/* <div className="user-infos-container">
-                 <div className="user-info-logo">
-                    <AccountCircleIcon style={{ position:"relative", top:"25%", left:"25%",fontSize:"50px", color:"#c10000", }}  className='admin-info-icon'/>
-                  </div>
-                  <div className="user-infos">
-                    <p><span style={{marginRight:"20px"}}>First name : </span> {firstName} </p>
-                    <p><span style={{marginRight:"20px"}}>Last name :</span> {lastName} </p>
-                    <p><span style={{marginRight:"55px"}}>Email : </span> {email}</p>
-                    <p><span style={{marginRight:"22px"}}>Company : </span> {companyName} </p>
-                    <p><span style={{marginRight:"50px"}}>Sector : </span> {sector}</p>
-                    <p><span style={{marginRight:"70px"}}>Size:</span> {size} </p>
-                    <p><span style={{marginRight:"40px"}}>Country: </span> {country} </p>
-                    
-                  </div>
-
-               <Link to={'/useredit'}><button className='button1' style={{marginTop:"18px"}}>Edit account</button></Link> 
-
-              </div> */}
 
           
         </div>

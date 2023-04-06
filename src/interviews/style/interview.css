@@ -1,0 +1,218 @@
+.actions-icons{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: flex-start;
+    
+}
+
+/* .edit-icon{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #E4E4E4;
+    border: 1px solid #E4E4E4;
+}
+
+.delete-icon{
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #e01e37;
+  border: 1px solid #e01e37;
+
+}
+
+.show-icon{
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: rgba(211, 20, 26, 0.11);
+  border: 1px solid rgba(211, 20, 26, 0.11);;
+} */
+
+
+.create-interview{
+    display: flex;
+    align-items: right;
+    justify-content: right;
+}
+
+.create-interview button{
+    margin-right: 50px;
+    width: 157px;
+    height: 40px;
+    font-weight: 500;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    border: none;
+    padding: 5px;
+    background: #C10000;
+    cursor: pointer;
+    color: white;
+    border-radius: 7px;
+}
+
+
+/* ********************************************************************** */
+/* ! dialog show details */
+/*  *****************************************************/
+  .dialog-detail-title{
+    color: #323232 ;
+    font-weight: 400;
+    font-size: 20px;
+  }
+
+  .time-details{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    color: #ABABAB;
+  }
+
+  .date-detail{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .date-detail i{
+    margin-top: 18px;
+  }
+
+  .clock-detail{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .clock-detail i{
+    margin-top: 18px;
+
+  }
+
+  .interview-link{
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+  }
+
+  .call-room{
+    width: 157px;
+    height: 39px;
+    background: #C10000;
+    border-radius: 7px;
+    color: #ffffff;
+    border: none;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .input-link{
+    position: relative;
+    display: flex;
+    width: 66%;
+   
+  }
+
+  .input-link > span,
+.input-link input {
+  white-space: nowrap;
+  display: block;
+}
+
+
+
+.input-link > span,
+.input-link input {
+  margin-left: -1px;
+}
+
+.input-link input {
+  position: relative;
+  width: 300px;
+  margin-top: 0;
+  margin-bottom: 0;
+  height: 36px;
+  background: #F7F7F7;
+  border: 0.5px solid rgba(0, 0, 0, 0.7);
+  border-bottom-left-radius: 7px ;
+  border-top-left-radius: 7px ;
+}
+
+.input-link span {
+  text-align: center;
+  padding: 8px 12px;
+  font-size: 14px;
+  height: 22px;
+  font-weight: bold;
+  background: #FFFFFF;
+  border: 0.5px solid rgba(0, 0, 0, 0.7);
+  border-radius: 0px 7px 7px 0px;
+}
+
+.candidate-info{
+    display: flex;
+    flex-direction: row;
+    gap: 180px;
+}
+
+.candidate-mail{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.notify{
+    width: 135px;
+    height: 39px;
+    background: #ffffff;
+    border-radius: 7px;
+    color: #000000;
+    border: 1px solid black;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.test-detail p{
+    font-weight: 400;
+    font-size: 16px;
+    color: #323232;
+}
+
+
+
+/* ! responsivness */
+
+    /* screnn less than 1100px */
+    @media  (max-width: 1100px)  {
+        .create-interview button{
+            margin-right: 25px ;
+        }
+    }
+
+    /* screen less than 1280px */
+
+@media  (max-width: 1280px)  {
+    .create-interview button{
+        margin-right: 25px ;
+    }
+}
+
+/* screen greater than 1366 */
+@media  (min-width: 1366px)  {
+    .create-interview button{
+        margin-right: 88px ;
+       
+    }
+}
+
+@media  (min-width: 1400px)  {
+    .create-interview button{
+        margin-right: 159px ;
+       
+    }
+}
