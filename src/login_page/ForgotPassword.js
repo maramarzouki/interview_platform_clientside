@@ -45,8 +45,8 @@ const notifyError = (notif) =>{
 
 const verify_email = (email) =>{
     // const {email}=data
-    axios.post('http://localhost:3001/forgot-password',email).
-    then(
+    axios.post('http://localhost:3001/forgot-password',email)
+    .then(
         notify()).catch(err=>{
         notifyError(err.response.data.err);
     })
@@ -66,8 +66,8 @@ const verify_email = (email) =>{
                 </div>
 
                 <div className="fg-instruction">
-                    Enter your email adress. You will recieve <br /> a link 
-                    to create a new password via email
+                    Enter your email address to recieve <br /> a link 
+                    that allows you to create a new password.
                 </div>
                 <form onSubmit={handleSubmit(verify_email)}>
                     <div className="fg-input">

@@ -15,11 +15,20 @@ function Userdash() {
   const [firstname, setFirstName] = useState('');
   const token = localStorage.getItem('token');
   const jwt = jwtDecode(token);
-  const recuiterID = jwt._id;
+  const recruiterID = jwt._id;
+
+  const [title, setTitle] = useState('');
+  const [interviewDay, setInterviewDay] = useState('');
+  const [interviewMonth, setInterviewMonth] = useState('');
+  const [interviewYear, setInterviewYear] = useState('');
+
+  const [start_hour, setStartHour] = useState('');  
+  const [end_hour, setEndHour] = useState('');
+  const [weekday, setWeekday] = useState('');
 
 
   const rec_name = () =>{
-    axios.get(`http://localhost:3001/recru_info/${recuiterID}`)
+    axios.get(`http://localhost:3001/recru_info/${recruiterID}`)
     .then(rec => {
       setFirstName(rec.data.first_name)
 
@@ -30,8 +39,25 @@ function Userdash() {
 
   useEffect(() => {
     rec_name();
+    get_today_interviews();
   })
 
+  const [response, setResponse] = useState("");
+
+  const get_today_interviews = () =>{
+    axios.get(`http://localhost:3001/get_today_interviews/${recruiterID}`)
+    .then((interviews) => {
+      setTitle(interviews.data[0].title);
+      setInterviewDay(interviews.data[0].day);
+      setInterviewMonth(interviews.data[0].month);
+      setInterviewYear(interviews.data[0].year);
+      setStartHour(interviews.data[0].start_hour);
+      setEndHour(interviews.data[0].end_hour);
+      setWeekday(interviews.data[0].weekday);
+     }).catch(err =>{
+      setResponse(err.response.data);
+    })
+  }
   
 
 
@@ -114,24 +140,27 @@ function Userdash() {
               <div className="calendar-container">
                 <Calendar onChange={setDate} value={date} />
               </div>
-                <p>My meetings</p>
+
+                
                 <div className="meetings-container">
+                <p>My meetings</p>
+                {response ? <p className='meeting-name'>{response}</p> :
+              <>
                   <div className="meeting-content">
                     <div className="meeting-info">
                          <EventBusyIcon style={{fontSize:'20px', color:"#c10000", marginTop:"8px", marginLeft:'8px'}}/>
-                        <p style={{fontSize:'12px', marginLeft:'3.5px'}}>Tuesday, March 30, 2023</p>
+                        <p style={{fontSize:'12px', marginLeft:'3.5px'}}>{weekday}, {interviewMonth} {interviewDay}, {interviewYear}</p>
                     </div>
                       <div className="meeting-time-container">
-                         <p className='time-meeting'>12am to 2pm</p>
+                         <p className='time-meeting'>{start_hour} to {end_hour}</p>
                       </div>                   
                   </div>
-                  <p className='meeting-name'>Front-end developer interview</p>
-
-
-                </div>
+                  <p className='meeting-name'>{title}</p>
+                  </>}
+                </div> 
 
               
-            </div>
+            </div> 
         
       </div>
 

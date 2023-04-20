@@ -23,7 +23,7 @@ function NewPassword() {
       const password = useRef({});
     password.current = watch("password", "");
 
-             const {userID,token} = useParams();
+             const {userID} = useParams();
              // notification success
             const notify = () => {
                 toast.success("Password is successfully updated !", {

@@ -16,6 +16,7 @@ import Tests from './tests/Tests';
 import TestDetail from './tests/TestDetail';
 import Calendar from './calendar/Calendar';
 import Interviews from './interviews/Interviews';
+import EmailCheck from './signup_page/EmailCheck';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
        <Route path="/" element={ <Login/> } />
        <Route path="/signup" element={ <Signup/> } />
        <Route path="/confirm/:activationcode" element={ <Activation/> } />
+       <Route path="/checkemail" element={ <EmailCheck/> } />
 
        <Route path="/forgotpassword" element={ <ForgotPassword/> } />
        <Route path="/userdash" element={ <Userdash/> } />

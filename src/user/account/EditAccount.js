@@ -63,7 +63,7 @@ function EditAccount() {
   },{toastId:'successNotif'});
 }
 
-      const update_recru = (data) => {
+      const update_recru = () => {
         axios.patch(`http://localhost:3001/update_recru/${recruiterID}`,
         {first_name:firstName,last_name:lastName,email:email})
         .then(result=>{

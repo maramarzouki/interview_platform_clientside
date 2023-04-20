@@ -3,15 +3,26 @@ import './signup.css';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 //notifications with notify
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+// antd tooltip
+import { Tooltip } from 'antd';
+
+
+
 function Signup() {
      // checking agree to terms
     const[isChecked, setIsChecked] = useState(false);
-   
+
+    //tooltip
+    const [showTooltip, setShowTooltip] = useState(false);
+
+   //navigate
+   const navigate = useNavigate();
 
     const {register, handleSubmit, formState : {errors}, watch} = useForm({
         defaultValues:{
@@ -33,17 +44,17 @@ function Signup() {
 
        // notifications
 // notification success
-const notify = () => {
-    toast.success("  We sent a verification mail to your email, check to login!", {
-        position:"top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        progress: undefined,
-        theme: "light",
-    },{toastId:'successNotif'});
-}
+// const notify = () => {
+//     toast.success("  We sent a verification mail to your email, check to login!", {
+//         position:"top-center",
+//         autoClose: 3000,
+//         hideProgressBar: false,
+//         closeOnClick: true,
+//         pauseOnHover: true,
+//         progress: undefined,
+//         theme: "light",
+//     },{toastId:'successNotif'});
+// }
 
 // notification error
 const notifyError = (notif) =>{
@@ -84,7 +95,7 @@ const notifyError = (notif) =>{
         axios.post(`http://localhost:3001/add_recru`,{first_name,last_name,email,password,company_name,country,domain,size})
         .then(result=>{
             console.log(result);
-            notify();
+            navigate('/checkemail');
         }).catch(err=>{
             console.log(err.response.data.err);
             notifyError(err.response.data.err);
@@ -94,6 +105,8 @@ const notifyError = (notif) =>{
         notifyWarning();
       }
 }
+
+
 
   return (
     <div className='signup'>
@@ -173,7 +186,10 @@ const notifyError = (notif) =>{
                             <div className="icons">
                                 <i className="fas fa-lock"></i>
                             </div>
+                            
                         <input type="password" name="password" placeholder='Password' 
+                         onMouseEnter={() => setShowTooltip(true)}
+                         onMouseLeave={() => setShowTooltip(false)}
                         {...register("password",
                         {required:"Password is required",
                         minLength:{value:8, message:"Password must have at least 8 characters"},
@@ -186,6 +202,22 @@ const notifyError = (notif) =>{
                         })}
                            
                         />  
+                         <Tooltip
+                                title={<div><strong> Password rules :</strong> <br />
+                                        <ul style={{marginLeft:"-15px"}}>
+                                            <li>Must have 8 characters</li>
+                                            <li>At least 1 uppercase letter</li>
+                                            <li>At least 1 lowercase letter</li>
+                                            <li>At least 1 number</li>
+                                        </ul>
+                                 </div> 
+                                            
+                            }
+                                visible={showTooltip}
+                                placement="rightBottom"
+                            >
+                            </Tooltip>
+                       
 
                         </div>
                         <p className='signup-error-message' >{errors.password && errors.password.message}</p>
@@ -198,10 +230,11 @@ const notifyError = (notif) =>{
                             <div className="icons">
                                 <i className="fas fa-lock"></i>
                             </div>
+                            
                         <input type="password" name="confirmPassword" placeholder='Confirm Password' 
                         {...register("confirmPassword",
                         {required:"",
-                        validate: value => value === password.current || "not matched"
+                        validate: value => value === password.current || "passwords doesn't match!"
 
                         })}
                            
@@ -285,7 +318,7 @@ const notifyError = (notif) =>{
                 {/* accepting to terms checkbox */}
                 <div className="check-wrapper"> 
                      <input type="checkbox" name="accept" id='checkOne' onChange={checkAgree} />
-                      <label htmlFor="checkOne"  style={{fontSize:"13px", textAlign:"center"}}>I agree to terms and conditions</label>
+                      <label htmlFor="checkOne"  style={{fontSize:"13px", textAlign:"center", marginLeft:"3px"}}>I understand and agree to the privacy policy <br /> and terms of use of Hackup Interviews</label>
                 </div>
 
 

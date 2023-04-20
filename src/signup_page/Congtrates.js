@@ -21,7 +21,7 @@ function Congtrates() {
 
            <div className="activation-instruction">
                 <p>
-                    Click on this button to redirects you to login page
+                Click on this button to be redirected to login page.
                 </p>
            </div>
            <div className="activation-button">

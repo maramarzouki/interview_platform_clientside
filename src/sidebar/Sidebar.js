@@ -30,7 +30,7 @@ function Sidebar() {
 
   return (
     <div className='sidebar-menu'>
-        <Modal title="Confirm Logout" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        <Modal title="Confirm Logout" open={isModalOpen} onOk={handleOk} onCancel={handleCancel} okButtonProps={{style:{backgroundColor: '#C10000'}}}>
         <p>Are you sure you want to logout ?</p>
       </Modal>
         <div className='side-logo'> 
@@ -51,12 +51,14 @@ function Sidebar() {
             <li>
                 <Link to={'/tests'}><i class="fas fa-folder"></i><span>Tests</span></Link>
             </li>
-            <li>
-                 <Link to={'/account'}><i class="fas fa-user"></i><span>Account</span></Link>
-            </li>
-            <li>
-                 <Link onClick={showModal}> <i><LogoutIcon/></i>  <span style={{marginTop:"-4px"}}>Logout</span></Link>
-            </li>
+            <div className="account-logout-wrapper" style={{marginTop:"120px"}}>
+                <li >
+                    <Link to={'/account'}><i class="fas fa-user"></i><span>Account</span></Link>
+                </li>
+                <li>
+                    <Link onClick={showModal}> <i><LogoutIcon/></i>  <span style={{marginTop:"-4px"}}>Logout</span></Link>
+                </li>
+            </div>
         </ul>
   
     </div>

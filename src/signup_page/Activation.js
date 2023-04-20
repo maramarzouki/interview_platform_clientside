@@ -9,8 +9,8 @@ function Activation() {
 
 
     const {activationcode} = useParams()
-    axios.post(`http://localhost:3001/verify_user/${activationcode}`).
-    then(result=>{
+    axios.post(`http://localhost:3001/verify_user/${activationcode}`)
+    .then(result=>{
         alert("alert:",result.response.data)
         console.log(activationcode);
     }).catch(err=>{
@@ -23,6 +23,8 @@ function Activation() {
 
     const goLogin = () =>{
         navigate('/');
+        window.location.reload(false);
+
     }
 
 
@@ -35,7 +37,7 @@ function Activation() {
 
            <div className="activation-instruction">
                 <p>
-                    Click on this button to redirects you to login page
+                    Click on this button to be redirected to login page.
                 </p>
            </div>
            <div className="activation-button">

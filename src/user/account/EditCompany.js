@@ -203,7 +203,7 @@ function EditCompany() {
                   </div>
 
 
-                <button className='edit-user-button'> Save </button>
+                <button className='edit-user-button' style={{marginTop:"5px"}}> Save </button>
                </form>
 
 

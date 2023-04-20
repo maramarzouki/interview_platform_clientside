@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import SidebarInterview from '../sidebar/SidebarInterview'
 import './style/interview.css';
 
@@ -18,19 +18,24 @@ import {DialogContent} from '@mui/material';
 
 import {  Modal } from 'antd';
 import { useForm } from 'react-hook-form';
+import moment from 'moment';
 
 
 //icons
-// import EditIcon from '@mui/icons-material/Edit';
-// import DeleteIcon from '@mui/icons-material/Delete';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
-// import VisibilityIcon from '@mui/icons-material/Visibility';
 import CreateInterview from './CreateInterview';
 import LinkIcon from '@mui/icons-material/Link';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
+import jwtDecode from 'jwt-decode';
+import axios from 'axios';
 
+// notifications with toastify
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+// import dayjs from 'dayjs';
 //styling table
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -55,25 +60,57 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 
 function Interviews() {
+
+  // notifications with notify
+
+    const notify_edit = () => {
+        toast.success(" Interview successfully updated !", {
+            position:"top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            progress: undefined,
+            theme: "light",
+        },{toastId:'successNotif'});
+    }
+
+    const [interviews , setInterviews] = useState([]);
     //controling form
     const{register, handleSubmit, formState : {errors}} = useForm({
       defaultValues:{
         title:'',
-        candidateEmail:'',
+        candidate_email:'',
         date:'',
-        startTime:'',
-        endTime:'',
+        start_hour:'',
+        end_hour:'',
         test:'',
   
       }
     })
 
-    // function to test if edit dialog works
-    const success = () =>{
-      alert('success !');
+
+
+    //token and recruiter ID
+    const token = localStorage.getItem('token');
+    const xtoken = jwtDecode(token);
+    const recruiterID = xtoken._id;
+
+    const show_interviews = () =>{
+
+      axios.get(`http://localhost:3001/get_interviews/${recruiterID}`)
+      .then(result =>{
+        setInterviews(result.data);
+
+      }).catch(err =>{
+        console.log(err.response.data);
+      })
     }
 
-
+    useEffect(() => {
+      show_interviews();
+      }, [])
+    
 
     //! opening and closing the create interview dialog
     const [openDialog, setOpenDialog] = useState(false);
@@ -86,33 +123,112 @@ function Interviews() {
 
     }
 
+// 
     //! opening and closing show details dialog
     const [openDetails, setOpenDetails] = useState(false);
+    const [title, setTitle] = useState('');
+    const [candidate_email, setCandidateEmail] = useState('');
+    const [date, setdate] = useState('');
+    const [start_hour, setStartHour] = useState('');  
+    const [end_hour, setEndHour] = useState('');
+    const [link, setLink] = useState('');  
+    const [interviewID,setInterviewID] = useState('');
+
     const handleShowDetails = () => {
       setOpenDetails(true);
     }
+
+    const showDetails = (id) =>{
+      handleShowDetails();
+      get_interview_details(id);
+    }
+    
     const closeShowDetails = () => {
       setOpenDetails(false);
+      window.location.reload(false);
+
     }
+
+    const get_interview_details = (interviewID) => {
+      axios.get(`http://localhost:3001/get_interview_details/${interviewID}`)
+      .then(details=>{
+        console.log(details);
+        setTitle(details.data.title);
+        setCandidateEmail(details.data.candidate_email);
+        setdate(moment(details.data.date, 'DD/MM/YYYY').format('YYYY-MM-DD'));
+
+        // setdate(dayjs(details.data.date).format('YYYY-MM-DD'));
+        // setdate(details.data.date);
+        // setdate(dayjs(details.data.date, 'DD/MM/YYYY').format('YYYY-MM-DD'));
+        setStartHour(details.data.start_hour);
+        setEndHour(details.data.end_hour);
+        setLink(details.data.link);
+        // console.log(dayjs(details.data.date).format('YYYY-MM-DD'));
+      }).catch(err=>{
+        console.log(err.response.data);
+      })
+    }
+
+    // notify candidate 
+    const notify_candidate = () =>{
+      const interview_date = moment(date).format("DD/MM/YYYY");
+      axios.post(`http://localhost:3001/notify_candidate/${recruiterID}`,{
+        candidate_email,date:interview_date,start_hour,link
+      })
+    }
+ 
+    
 
     //! opening and closing edit interview dialog
     const [openEdit, setOpenEdit] = useState(false);
-    const handleEditDialog = () =>{
+    const handleEditDialog = (interviewID) =>{
       setOpenEdit(true);
+      get_interview_details(interviewID);
     }
     const closeEditDialog = () =>{
       setOpenEdit(false);
-      window.location.reload(true);
+      window.location.reload(false);
+
+
 
     }
 
-    //deleting interview
-    const delete_warning = () =>{
-      Modal.confirm({
+    const update_interview = () => {
+      // const newInterviewDate = dayjs(date).format("yyyy-MM-dd");
+
+      axios.patch(`http://localhost:3001/update_interview/${interviewID}`,
+      {title:title,candidate_email:candidate_email,date:date,start_hour:start_hour, end_hour:end_hour})
+      .then(result=>{
+        console.log(result);
+        notify_edit();
+        setTimeout(() => {
+          window.location.reload(false);
+        }, 1000)  
+      
+        
+       
+      }).catch(err=>{ 
+        console.log(err.response.data.err);
+      })
+    }
+
+    // const updating_stuff = (interviewID) =>{
+    //   setInterviewID(interviewID);
+    //   handleEditDialog();
+    // } 
+   
+
+    // ! deleting interview
+
+      const deleteing_Interview = (interviewID) =>{
+        Modal.confirm({
           title:'Delete Interview',
           content:'Are you sure you want to delete this Interview?',      
-          onOk(){
-            window.location.reload(false);
+          onOk(){ 
+            axios.delete(`http://localhost:3001/delete_interview/${interviewID}`)
+            .then( () => {
+              window.location.reload(false);
+            })
           },
           okText:'Delete',
           cancelText:'Cancel',
@@ -120,7 +236,10 @@ function Interviews() {
             style: {backgroundColor: '#C10000'}
           }
       })
-  }
+       
+      }
+
+  
 
   return (
     <div className='Interviews'>
@@ -141,15 +260,15 @@ function Interviews() {
                 <Dialog open={openDetails} onClose={closeShowDetails} PaperProps={{ sx: { width: "43.7%", height: "100%" } }}>
                   <DialogTitle className='dialog-title'>Interview Details</DialogTitle>
                   <DialogContent className='dialog-content'>
-                    <h2 className='dialog-detail-title'>Interview with front-end candidate</h2>
+                    <h2 className='dialog-detail-title'>{title}</h2>
                     <div className="time-details">
                       <div className="date-detail">
                         <i class="fas fa-briefcase"></i>
-                        <p>25/05/2023</p>
+                        <p>{moment(date).format('DD/MM/YYYY')}</p>
                       </div>
                       <div className="clock-detail">
                         <i class="fas fa-clock"></i> 
-                        <p>12:00pm - 1:00pm</p>
+                        <p>{start_hour} - {end_hour}</p>
                       </div>
                     </div>
                     <hr />
@@ -157,7 +276,7 @@ function Interviews() {
                     <h4>Interview link</h4>
                     <div className="interview-link">
                       <div className="input-link">
-                      <input type="text" name="link" placeholder='https://www.hackupinterview/' />
+                      <input type="text" name="link" value={link} />
                       <span><LinkIcon/></span>
                       </div>
                       <button className='call-room'>Go to call room</button>
@@ -167,9 +286,9 @@ function Interviews() {
                     <div className="candidate-info">
                       <div className="candidate-mail">
                         <AccountCircleIcon style={{width:"50px", height:'50px', color:'#c10000'}}/>
-                        <p>candidate@gmail.com</p>
+                        <p>{candidate_email}</p>
                       </div>
-                      <button className='notify'>Notify Candidate</button>
+                      <button className='notify' onClick={notify_candidate}>Notify Candidate</button>
                     </div>
 
                     <h4>Test</h4>
@@ -186,11 +305,12 @@ function Interviews() {
 >
                     <DialogTitle className='dialog-title'>Edit Interview details</DialogTitle>
                       <DialogContent className='dialog-content'>
-                        <form onSubmit={handleSubmit(success)}>
+                        <form onSubmit={handleSubmit(update_interview)}>
                           <div className="dialog-field">
                               <label>Interview title</label>
-                              <input type="text"  placeholder='Enter Interview Title' name='title' 
-                                {...register("title", {required:"Title is required"} )}
+                              <input type="text"  value={title} name='title' 
+                                onChangeCapture={(e)=>{setTitle(e.target.value)}}
+                                {...register("title" )}
                               />
                               <p className='errors-dialog'>{errors.title && errors.title.message}</p>
 
@@ -198,8 +318,9 @@ function Interviews() {
 
                           <div className="dialog-field">
                               <label>Candidate email</label>
-                              <input type="email" placeholder='Enter candidate email' name='candidateEmail'
-                                {...register("candidateEmail", {required:" Email is required",
+                              <input type="email" value={candidate_email} name='candidate_email'
+                                onChangeCapture={(e)=>{setCandidateEmail(e.target.value)}}
+                                {...register("candidate_email", {
                                 pattern: {
                                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
                                   message:"Please enter a valid email!"
@@ -207,14 +328,19 @@ function Interviews() {
 
                                 })}
                               />
-                              <p className='errors-dialog' >{errors.candidateEmail && errors.candidateEmail.message}</p>
+                              <p className='errors-dialog' >{errors.candidate_email && errors.candidate_email.message}</p>
 
                           </div>
 
                           <div className="dialog-field">
                               <label>Interview Date</label>
                               <input type="date"  name='date' 
-                                {...register("date", {required:"Date is required"})}
+
+                                value={date}
+
+                                {...register("date")}
+                                onChangeCapture={(e)=>{setdate(e.target.value)}}
+
                               />
                             <p className='errors-dialog' >{errors.date && errors.date.message}</p>
 
@@ -226,19 +352,23 @@ function Interviews() {
 
                             <div className="dialog-field-time">
                               <div className="dialog-time">
-                                  <input type="time"  name='startTime'
-                                    {...register("startTime", {required:"Start time is required"})}
+                                  <input type="time"  name='start_hour'
+                                    value={start_hour}
+                                    {...register("start_hour")}
+                                    onChangeCapture={(e)=>{setStartHour(e.target.value)}}
                                   />
-                                <p className='errors-dialog' >{errors.startTime && errors.startTime.message}</p>
+                                <p className='errors-dialog' >{errors.start_hour && errors.start_hour.message}</p>
 
                               </div>
 
                               <div className="dialog-time-to">
-                                <input type="time"  name='endTime' 
-                                {...register("endTime", {required:"End time is required"})}
+                                <input type="time"  name='end_hour' 
+                                value={end_hour}
+                                onChangeCapture={(e)=>{setEndHour(e.target.value)}}
+                                {...register("end_hour")}
 
                                 /> 
-                              <p className='errors-dialog' >{errors.endTime && errors.endTime.message}</p>
+                              <p className='errors-dialog' >{errors.end_hour && errors.end_hour.message}</p>
 
                               </div>
 
@@ -248,7 +378,7 @@ function Interviews() {
 
                           <div className="dialog-field" >
                             <label htmlFor="test">Choose a test</label>
-                            <select className="select-test" name="test" {...register("test", {required:"Test is required"})} >
+                            <select className="select-test" name="test" {...register("test")} >
                               <option value="test1">test1</option>
                               <option value="test2">test2</option>
                               <option value="test3">test3</option>
@@ -258,15 +388,16 @@ function Interviews() {
                             <p className='errors-dialog' >{errors.test && errors.test.message}</p>
 
                           </div>
-                          <div className="dialog-buttons">
-                            <button onClick={closeEditDialog} className='dialog-cancel'>Cancel</button>
-                            <button  className='dialog-save'>Create Interview</button>
+                          <div className="dialog-buttons-edit">
+                            <button  className='dialog-save-edit'>Update Interview</button>
                           </div>
                       </form>
+                      <button onClick={closeEditDialog} className='dialog-cancel-edit'>Cancel</button>
+
                       
                     
                   </DialogContent>
-                  
+                  <ToastContainer/>
                   </Dialog>
 
 
@@ -289,22 +420,25 @@ function Interviews() {
                         </TableRow>
                         </TableHead>
                         <TableBody>
-                        
-                            <StyledTableRow >
-                            <StyledTableCell align='left' >Interview with front-end candidate</StyledTableCell>
-                            <StyledTableCell align="left">Not started</StyledTableCell>
-                            <StyledTableCell align="left">05/05/2023 </StyledTableCell>
-                            <StyledTableCell align="left">12:00 pm</StyledTableCell>
+                        {interviews.map((item, i) => {
+                          return(
+                            <StyledTableRow key={i} content={item} >
+                            <StyledTableCell align='left' >{item.title}</StyledTableCell>
+                            <StyledTableCell align="left">{item.status}</StyledTableCell>
+                            <StyledTableCell align="left">{item.date} </StyledTableCell>
+                            <StyledTableCell align="left">{item.start_hour}</StyledTableCell>
                             <StyledTableCell align="left">
                             <div className="actions-icons">
-                                    <div className="edit-icon">
-                                       <EditOutlinedIcon onClick={handleEditDialog} style={{color:'#DC6C6C', cursor:'pointer', }}/>
-                                    </div>
                                     <div className="show-icon">
-                                      <RemoveRedEyeOutlinedIcon onClick={handleShowDetails} style={{color:' #a5a5a5', cursor:'pointer'}}/>
+                                      <RemoveRedEyeOutlinedIcon onClick={() => showDetails(item._id)} style={{color:' #a5a5a5', cursor:'pointer', width:'20px'}}/>
                                     </div>
+                                    <div className="edit-icon">
+                                       <EditOutlinedIcon onClick={()=>{setInterviewID(item._id) ;handleEditDialog(item._id)}} 
+                                        style={{color:'#DC6C6C', cursor:'pointer', width:'20px'}}/>
+                                    </div>
+                                    
                                     <div className="delete-icon">
-                                      <DeleteOutlinedIcon onClick={delete_warning} style={{color:'#e01e37', cursor:'pointer'}}/>
+                                      <DeleteOutlinedIcon onClick={() => deleteing_Interview(item._id)} style={{color:'#e01e37', cursor:'pointer', width:'20px'}}/>
 
                                     </div>
 
@@ -312,21 +446,10 @@ function Interviews() {
                             </StyledTableCell>
 
                             </StyledTableRow>
-                            <StyledTableRow >
-                            <StyledTableCell align='left' >Interview with front-end candidate</StyledTableCell>
-                            <StyledTableCell align="left">Not started</StyledTableCell>
-                            <StyledTableCell align="left">05/05/2023 </StyledTableCell>
-                            <StyledTableCell align="left">12:00 pm</StyledTableCell>
-                            <StyledTableCell align="left">
-                            <div className="actions-icons">
-                                    <EditOutlinedIcon onClick={handleEditDialog} style={{color:'#DC6C6C', cursor:'pointer'}}/>
-                                    <RemoveRedEyeOutlinedIcon onClick={handleShowDetails} style={{color:' #a5a5a5', cursor:'pointer'}}/>
-                                    <DeleteOutlinedIcon onClick={delete_warning} style={{color:'#e01e37', cursor:'pointer'}}/>
-
-                                </div>
-                            </StyledTableCell>
-
-                            </StyledTableRow>
+                          )
+                        })}
+                          
+                           
                             
                         </TableBody>
                     </Table>

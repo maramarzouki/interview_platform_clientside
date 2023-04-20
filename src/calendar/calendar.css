@@ -20,7 +20,7 @@
     --fc-button-hover-border-color: none;
     --fc-button-active-bg-color: #c10000;
     --fc-button-active-border-color: #c10000;
-    --fc-event-bg-color: #3788d8;
+    --fc-event-bg-color: rgba(211, 20, 26, 0.1);;
     --fc-event-border-color: #3788d8;
     --fc-event-text-color: #fff;
     --fc-event-selected-overlay-color: rgba(0, 0, 0, 0.25);
@@ -41,9 +41,10 @@
 }
 
 
-.fc-direction-ltr .fc-button-group>.fc-button:first-child {
+.fc-direction-ltr .fc-button-group>.fc-button:first-child:active{
     border-bottom-right-radius: 0;
     color: white;
+    
     border-top-right-radius: 0;
 }
 
@@ -87,4 +88,22 @@
     font-weight: 400;
     font-size: 14px;    
     color: #475569;
+}
+
+/* ********************** */
+.fc-event-time{
+font-size: 12px;
+}
+
+.fc-event-title{
+    font-size: 10px;
+
+}
+
+/* ********************************* */
+/* ! button active */
+.fc .fc-button-primary:not(:disabled).fc-button-active, .fc .fc-button-primary:not(:disabled):active {
+    background-color: var(--fc-button-active-bg-color);
+    border-color: var(--fc-button-active-border-color);
+    color: #fff;
 }
